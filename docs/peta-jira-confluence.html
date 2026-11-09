@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peta Jira, Confluence, dan Scrum</title>
+<style>
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#ffffff; --soft:#f8fafc; --accent:#2563eb; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--soft); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:940px; margin:0 auto; padding:48px 28px 80px; background:var(--bg); }
+  h1 { font-size:30px; line-height:1.25; margin:0 0 8px; letter-spacing:-0.01em; }
+  h2 { font-size:20px; margin:44px 0 12px; padding-top:20px; border-top:1px solid var(--line); }
+  h3 { font-size:16px; margin:24px 0 8px; }
+  p { margin:0 0 14px; }
+  .lead { color:var(--muted); font-size:17px; margin-bottom:28px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:18px 0; }
+  .box { border:1px solid var(--line); border-radius:10px; padding:16px; background:var(--soft); }
+  .box b { display:block; margin-bottom:6px; }
+  .box.blue { border-left:3px solid var(--accent); }
+  .box.green { border-left:3px solid #16a34a; }
+  .box.amber { border-left:3px solid #d97706; }
+  .box span { color:var(--muted); font-size:14px; }
+  table { width:100%; border-collapse:collapse; margin:14px 0 8px; font-size:14px; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--soft); font-weight:600; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em; }
+  code { background:var(--soft); border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:13px; }
+  .note { border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:8px; padding:14px 16px; background:var(--soft); margin:18px 0; }
+  .note b { display:block; margin-bottom:4px; }
+  input { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-size:15px; font-family:inherit; }
+  .count { color:var(--muted); font-size:13px; margin:8px 0; }
+  .pill { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:2px 10px; font-size:13px; margin:0 6px 6px 0; background:var(--soft); }
+  footer { color:var(--muted); font-size:13px; margin-top:40px; }
+  @media (max-width:720px){ .grid{grid-template-columns:1fr;} main{padding:28px 18px 60px;} }
+</style>
+</head>
+<body>
+<main>
+  <h1>Peta Jira, Confluence, dan Scrum</h1>
+  <p class="lead">Satu halaman untuk menjawab: ini alat apa, istilahnya apa, dan saya menaruh sesuatu di mana. Dibuat untuk project QAL di madgo.atlassian.net.</p>
+
+  <h2>Tiga tempat, tiga tugas berbeda</h2>
+  <div class="grid">
+    <div class="box blue"><b>Jira</b><span>Kerja dan status. Story, task, bug, sprint, board, siapa pegang apa.</span></div>
+    <div class="box green"><b>Confluence</b><span>Pengetahuan dan bukti. Strategi, panduan, checklist, keputusan.</span></div>
+    <div class="box amber"><b>GitHub</b><span>Kode dan hasil run. File test, CI, log.html, screenshot.</span></div>
+  </div>
+  <div class="note"><b>Aturan satu kalimat</b>Status kerja di Jira, pengetahuan di Confluence, bukti eksekusi di GitHub. Jangan menyalin status harian ke Confluence, dan jangan menaruh dokumen panjang di Jira.</div>
+
+  <h2>Alur satu sprint dua minggu</h2>
+  <table>
+    <thead><tr><th>Hari</th><th>Kegiatan</th><th>Pertanyaan</th><th>Artefak</th></tr></thead>
+    <tbody>
+      <tr><td>H-3</td><td>Refinement</td><td>Story ini sudah jelas dan bisa diuji?</td><td>Jira: komentar AC</td></tr>
+      <tr><td>1</td><td>Sprint planning</td><td>Apa target dua minggu ini?</td><td>Jira: sprint goal, Confluence: test plan</td></tr>
+      <tr><td>2-3</td><td>Desain test</td><td>Bagaimana membuktikannya?</td><td>Confluence: test case, repo: test</td></tr>
+      <tr><td>4-6</td><td>Eksekusi</td><td>Apakah hasilnya sesuai AC?</td><td>Jira: status dan bug, GitHub: run</td></tr>
+      <tr><td>7</td><td>Refinement lanjutan</td><td>Apa yang masuk sprint depan?</td><td>Jira: backlog</td></tr>
+      <tr><td>8</td><td>Bug bash</td><td>Apa yang belum terpikirkan?</td><td>Jira: bug baru</td></tr>
+      <tr><td>9</td><td>Regresi dan sign-off</td><td>Apakah aman dirilis?</td><td>Confluence: release sign-off</td></tr>
+      <tr><td>10</td><td>Rilis dan retro</td><td>Apa yang perlu diperbaiki?</td><td>Jira dan Confluence</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Hierarki issue di Jira</h2>
+  <p><span class="pill">Epic</span> &rarr; <span class="pill">Story</span> &rarr; <span class="pill">Sub-task</span></p>
+  <p><span class="pill">Bug</span> ditemukan saat menguji story, lalu ditautkan ke story itu.</p>
+  <p>Contoh: Epic <b>Fondasi QA Manual</b> berisi story <b>Tulis test plan</b>, <b>Susun 24 test case</b>, dan <b>Laporkan 3 bug</b>. Sub-task hanya satu tingkat; kalau butuh tiga tingkat, story-nya yang perlu dipecah.</p>
+
+  <h2>Mau menaruh sesuatu? Lihat ini</h2>
+  <table>
+    <thead><tr><th>Yang kamu punya</th><th>Taruh di</th><th>Tipe</th><th>Contoh</th></tr></thead>
+    <tbody>
+      <tr><td>Ide fitur atau tugas baru</td><td>Jira</td><td>Story atau Task</td><td>Otomasi login</td></tr>
+      <tr><td>Rincian cara menguji</td><td>Confluence</td><td>Page test plan</td><td>Sprint 1 test plan</td></tr>
+      <tr><td>Langkah reproduksi bug</td><td>Jira</td><td>Bug</td><td>Tombol bayar mati</td></tr>
+      <tr><td>Aturan dan keputusan</td><td>Confluence</td><td>Page strategi</td><td>Test Strategy</td></tr>
+      <tr><td>Langkah otomasi</td><td>GitHub</td><td>File .robot</td><td>tests/smoke/login.robot</td></tr>
+      <tr><td>Hasil eksekusi</td><td>GitHub CI</td><td>Artifact dan log</td><td>robot-results</td></tr>
+      <tr><td>Ringkasan hasil uji</td><td>Jira dan Confluence</td><td>Komentar dan laporan</td><td>Test summary</td></tr>
+      <tr><td>Risiko sebelum rilis</td><td>Confluence</td><td>Release sign-off</td><td>Go atau No-Go</td></tr>
+      <tr><td>Target dua minggu</td><td>Jira</td><td>Sprint goal</td><td>Baseline otomasi</td></tr>
+      <tr><td>Daftar tunggu pekerjaan</td><td>Jira</td><td>Backlog</td><td>13 issue di CSV</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Kamus istilah</h2>
+  <input id="q" type="search" placeholder="Cari istilah, misalnya story, sprint, atau JQL">
+  <div class="count" id="count"></div>
+  <table>
+    <thead><tr><th>Istilah</th><th>Asal</th><th>Artinya</th><th>Contoh kita</th></tr></thead>
+    <tbody id="terms"></tbody>
+  </table>
+
+  <h2>Kondisi project sekarang</h2>
+  <table>
+    <thead><tr><th>Benda</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Space Confluence QAL</td><td>Sudah ada, 4 halaman terisi</td></tr>
+      <tr><td>Test Strategy, Bug Report Guideline, Automation Guide, Release Sign-off</td><td>Sudah dibuat dan bisa dibuka</td></tr>
+      <tr><td>Project Jira QAL</td><td>Belum ada, perlu dibuat dari tombol Create</td></tr>
+      <tr><td>Backlog 13 issue</td><td>Siap impor dari jira/backlog.csv</td></tr>
+      <tr><td>Repo otomasi</td><td>Commit cbdb926, siap push</td></tr>
+    </tbody>
+  </table>
+
+  <footer>Istilah mengikuti Jira Cloud dan Scrum yang umum dipakai tim produk. Nama status bisa berbeda antar perusahaan; yang stabil adalah alurnya.</footer>
+</main>
+<script>
+var TERMS = [
+  ["Project","Jira","Wadah semua pekerjaan, punya key seperti QAL","QAL-12"],
+  ["Issue","Jira","Satu kartu pekerjaan; semua tipe di Jira adalah issue","QAL-7"],
+  ["Epic","Jira","Tema besar yang dipecah jadi beberapa story","Fondasi QA Manual"],
+  ["Story","Jira","Pekerjaan bernilai yang selesai dalam satu sprint","Tulis test plan"],
+  ["Task","Jira","Pekerjaan teknis tanpa nilai langsung ke user","Setup board Jira"],
+  ["Sub-task","Jira","Pecahan di dalam story, hanya satu tingkat","Tulis 10 test case"],
+  ["Bug","Jira","Perilaku menyimpang dari harapan, wajib bisa direproduksi","Tombol simpan mati"],
+  ["Spike","Jira","Riset berbatas waktu, hasilnya keputusan","Bandingkan locator"],
+  ["Backlog","Jira","Daftar tunggu pekerjaan yang belum masuk sprint","13 issue"],
+  ["Sprint","Jira","Periode kerja tetap, di sini dua minggu","10-23 Nov"],
+  ["Board","Jira","Papan kolom status untuk kerja harian","To Do | In QA | Done"],
+  ["Status","Jira","Posisi issue saat ini","In QA"],
+  ["Transition","Jira","Perpindahan antar status","In QA ke Done"],
+  ["Acceptance Criteria","Jira","Syarat yang membuat story dianggap selesai","Login gagal menampilkan pesan"],
+  ["Definition of Ready","Scrum","Syarat sebelum story masuk sprint","DoR"],
+  ["Definition of Done","Scrum","Syarat sebelum story ditutup","DoD"],
+  ["Story Points","Scrum","Ukuran relatif, bukan jam","5 poin"],
+  ["Velocity","Scrum","Rata-rata poin selesai per sprint","18 poin"],
+  ["Burndown","Scrum","Grafik sisa pekerjaan per hari","Sisa 12 poin"],
+  ["Daily","Scrum","Rapat 15 menit: kemarin, hari ini, blocker","09.30"],
+  ["Refinement","Scrum","Menyiapkan backlog sprint berikutnya","H-3 dan hari 7"],
+  ["Retro","Scrum","Refleksi akhir sprint","Kurangi bug lolos"],
+  ["Component","Jira","Label area fungsional","Checkout"],
+  ["Label","Jira","Penanda bebas untuk filter","smoke, regression"],
+  ["Fix Version","Jira","Versi rilis tempat perbaikan ikut","v0.1"],
+  ["JQL","Jira","Bahasa query Jira, seperti WHERE di SQL","status != Done"],
+  ["Filter","Jira","Query JQL yang disimpan","Bug hari ini"],
+  ["Dashboard","Jira","Kumpulan gadget filter dan grafik","Tren bug"],
+  ["Space","Confluence","Folder besar berisi halaman","QAL"],
+  ["Page","Confluence","Satu dokumen di dalam space","Test Strategy"],
+  ["Test Plan","Dokumentasi","Rencana uji satu sprint atau rilis","docs/test-plan.md"],
+  ["Test Case","Dokumentasi","Langkah uji dengan data dan expected","TC-CHECKOUT-001"],
+  ["Regression","Testing","Uji ulang area lama setelah perubahan","Suite 11 test"],
+  ["Smoke Test","Testing","Uji cepat alur kritis","Login dan checkout"],
+  ["Severity","Testing","Dampak teknis bug","S2"],
+  ["Priority","Testing","Urgensi bisnis, beda dengan severity","P1"]
+];
+var q = document.getElementById("q");
+var body = document.getElementById("terms");
+var counter = document.getElementById("count");
+function render() {
+  var s = q.value.trim().toLowerCase();
+  var rows = TERMS.filter(function (r) {
+    return s === "" || (r[0] + " " + r[2] + " " + r[3] + " " + r[1]).toLowerCase().indexOf(s) > -1;
+  });
+  var out = "";
+  for (var i = 0; i < rows.length; i++) {
+    out += "<tr><td><b>" + rows[i][0] + "</b></td><td>" + rows[i][1] + "</td><td>" + rows[i][2] + "</td><td>" + rows[i][3] + "</td></tr>";
+  }
+  body.innerHTML = out || "<tr><td colspan='4'>Tidak ada istilah yang cocok.</td></tr>";
+  counter.textContent = rows.length + " dari " + TERMS.length + " istilah";
+}
+q.addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
+

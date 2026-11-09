@@ -1,0 +1,15 @@
+Issue Type,Summary,Description,Epic Link,Priority,Labels,Story Points
+Epic,Fondasi QA Manual,"Membangun dasar manual testing: test plan, test case, bug report, dan konfigurasi Jira. Target: satu siklus uji lengkap tercatat.",,P2,"qa,sprint-1",
+Epic,Otomasi Baseline,"Mengubah alur kritis menjadi suite Robot Framework + SeleniumLibrary yang jalan di CI. Target: regression otomatis pertama.",,P2,"qa,automation",
+Story,Tulis test plan untuk SauceDemo,"AC: scope dan out-of-scope jelas; risk matrix minimal 5 area; entry dan exit criteria terukur; direview sebelum eksekusi.",Fondasi QA Manual,P1,"documentation,sprint-1",3
+Story,Susun 24 test case manual,"AC: mencakup login, katalog, keranjang, checkout; minimal 8 kasus negatif; setiap kasus punya data uji dan expected yang teramati; ID TC- konsisten dengan repo.",Fondasi QA Manual,P1,"test-design,sprint-1",5
+Story,Laporkan 3 bug valid dengan bukti,"AC: tiga bug report berisi langkah, expected, actual, environment, dan bukti; developer bisa mereproduksi tanpa bertanya; severity dan priority terisi.",Fondasi QA Manual,P2,"bug,sprint-1",3
+Task,"Setup project Jira, workflow, dan filter","AC: board punya kolom QA; field Severity dan Environment aktif; lima filter JQL tersimpan; dashboard dasar tampil.",Fondasi QA Manual,P2,"jira,sprint-1",2
+Spike,Tentukan strategi locator otomasi,"AC: keputusan data-test vs CSS vs XPath tertulis; contoh locator untuk tiga halaman; batas waktu empat jam; hasil dipakai di story otomasi.",Otomasi Baseline,P3,"automation,spike",1
+Story,Setup repo Robot Framework dan SeleniumLibrary,"AC: struktur tests dan resources ada; smoke login lulus headless; README berisi cara menjalankan.",Otomasi Baseline,P1,"automation,sprint-2",3
+Story,Otomasi 11 test prioritas,"AC: login, katalog, keranjang, checkout tercakup; suite lulus tiga kali berturut; tidak memakai Sleep untuk menunggu.",Otomasi Baseline,P1,"automation,regression,sprint-2",5
+Story,Jalankan suite di GitHub Actions,"AC: workflow jalan pada push dan pull request; artifact log dan screenshot terunggah; durasi di bawah 10 menit.",Otomasi Baseline,P2,"ci,sprint-2",3
+Story,Susun regression checklist dan test summary,"AC: checklist per rilis dengan tag Robot; template test summary berisi risiko tersisa dan rekomendasi rilis.",Otomasi Baseline,P2,"documentation,sprint-2",2
+Task,Buat space Confluence dan delapan halaman inti,"AC: home, test strategy, sprint plan, test case repository, bug guideline, regression checklist, release sign-off, automation guide tersedia dan saling tertaut.",Otomasi Baseline,P3,"documentation,sprint-2",2
+Bug,[Katalog] Gambar produk tidak sesuai pada akun problem_user,"Environment: Chrome 141, build demo, akun problem_user. Langkah: login problem_user, buka katalog, bandingkan gambar dengan nama produk. Aktual: gambar tidak sesuai produk. Harapan: gambar sesuai produk. Frekuensi: 6/6. Severity S3, Priority P3 karena ini defect bawaan skenario demo.",Fondasi QA Manual,P3,"bug,example",
+

@@ -34,7 +34,7 @@ Tidak cocok: unit test komponen, benchmark performa berat, dan test yang butuh d
 ## Checklist menambah project
 
 1. Buat folder dari templates/project menjadi projects/<nama>, huruf kecil dan tanpa spasi.
-2. Isi README.md di folder itu: URL staging dan produksi, akun QA, lima alur kritis, risiko utama, dan pemilik.
+2. Salin context/_template menjadi context/<nama>, lalu isi URL, akun QA, lima alur kritis, dan risikonya. Ini kontrak input untuk pipeline.
 3. Set BASE_URL dan kredensial lewat environment variable atau GitHub Secrets. Jangan pernah menulis password di repo.
 4. Petakan tiga halaman pertama ke page object. Urutan locator: data-test lalu id stabil, baru CSS berbasis atribut. XPath absolut dilarang.
 5. Tulis lima smoke test untuk alur yang paling mahal kalau rusak. Jalankan lokal tiga kali berturut sebelum dianggap stabil.
@@ -42,6 +42,8 @@ Tidak cocok: unit test komponen, benchmark performa berat, dan test yang butuh d
 7. Review terakhir: tidak ada Sleep untuk menunggu, assertion memeriksa hasil bisnis, dan hasil run tersimpan sebagai artifact.
 
 ## Contoh perintah
+
+Alur kerja agent di repo ini mengikuti docs/ai-workflow.md: satu project, satu alur, satu review di tiap tahap.
 
     python -m robot --outputdir results/saucedemo projects/saucedemo/tests
     python -m robot --outputdir results/go-chat --include smoke projects/go-chat/tests

@@ -267,7 +267,98 @@ Itu bukan fitur khusus. Itu hasil konfigurasi:
 
 Kamu bisa mencapai level yang sama di SCRUM dengan menambah status QA, Tested, Reject, dan Pending di Work types, lalu menyusun ulang kolom board.
 
-## 24. Jalur naik level
+## 24. Menerapkan standar board industri di SCRUM
+
+Bagian ini mengubah project SCRUM dari board sederhana menjadi board bertujuh kolom seperti contoh autopedai. Semua langkah di bawah dilakukan sekali, sekitar 30 menit.
+
+### Target akhir
+
+| Kolom | Status | Arti | Siapa memindahkan |
+| --- | --- | --- | --- |
+| TO DO | To Do | Sudah masuk sprint, belum dikerjakan | PO dan QA saat planning |
+| IN PROGRESS | In Progress | Sedang dikerjakan developer | Developer |
+| QA | In QA | Sedang diuji | QA |
+| TESTED | Tested | Lulus uji, menunggu rilis | QA |
+| REJECT | Rejected | Gagal uji, kembali ke developer | QA |
+| PENDING | Pending | Menunggu pihak ketiga atau data | Pemilik tiket |
+| DONE | Done | Selesai dan sudah rilis | QA atau PO |
+
+Perhatikan: Reject dan Pending bukan priority. Keduanya status. Priority tetap Highest sampai Lowest.
+
+### Langkah 1 - menambah status
+
+Buka Space settings, pilih Work types, klik Task, lalu Workflow.
+
+Tambahkan empat status baru: In QA, Tested, Rejected, Pending. Untuk tiap status, pilih kategori yang benar: In QA dan Tested masuk kategori In Progress, Rejected masuk To Do, Pending masuk To Do.
+
+Urutkan transisi: To Do ke In Progress, In Progress ke In QA, In QA ke Tested atau Rejected, Rejected kembali ke In Progress, Tested ke Done.
+
+### Langkah 2 - menyusun kolom board
+
+Buka Board, klik View settings, lalu Columns.
+
+Tarik status ke urutan target di atas. Ganti nama kolom menjadi TO DO, IN PROGRESS, QA, TESTED, REJECT, PENDING, DONE.
+
+Pasang batas WIP pada kolom QA, misalnya 3. Artinya maksimal tiga tiket diuji bersamaan. Kalau angka melewati batas, warna kolom berubah dan itu sinyal untuk standup.
+
+### Langkah 3 - quick filter
+
+Klik Filter, lalu Quick filters. Buat tiga filter:
+
+    Bug saya: assignee = currentUser() AND issuetype = Bug
+    Siap retest: status = Tested
+    Blocker: priority in (Highest, High) AND statusCategory != Done
+
+Quick filter memakai JQL yang sama seperti filter biasa, hanya ditampilkan sebagai tombol di atas board.
+
+### Langkah 4 - swimlane
+
+Klik Group, pilih Epic. Kartu akan dikelompokkan per epic dengan garis pemisah. Ini yang membuat board autopedai terlihat rapi: setiap baris adalah satu epic.
+
+### Langkah 5 - menampilkan Priority
+
+Buka Space settings, Work types, Task, lalu Fields. Tambahkan Priority ke layout. Setelah itu Priority muncul di panel kanan tiket dan bisa diubah ke Highest, High, Medium, Low, Lowest.
+
+Tambahkan juga Environment dan Acceptance Criteria kalau belum ada, karena keduanya dipakai QA setiap hari.
+
+### Langkah 6 - versi rilis
+
+Versi v0.1 sudah dibuat di project ini dengan tanggal rilis 7 Desember 2026. Isi field Fix version di tiket yang masuk rilis tersebut.
+
+Filter kesiapan rilis:
+
+    project = SCRUM AND fixVersion = "v0.1" AND statusCategory != Done
+
+### Langkah 7 - konvensi penamaan
+
+Tambahkan prefix tipe di judul: [FE] untuk frontend, [BE] untuk backend, [QA] untuk pekerjaan uji.
+
+Beri nama sprint dengan kode rilis dan nomor: [MVP1][S1] Fondasi QA. Ini memudahkan melihat sprint mana yang masuk rilis mana.
+
+### Langkah 8 - ritme kerja
+
+Daily 15 menit dengan board terbuka. Refinement dua kali per sprint untuk menyiapkan backlog. Sprint review di hari terakhir, lanjut retro.
+
+Di review, tunjukkan kolom TESTED dan DONE sebagai bukti, bukan cerita.
+
+### Yang sudah diterapkan
+
+Versi v0.1 sudah ada di project SCRUM, id 10000, status unreleased, tanggal rilis 7 Desember 2026.
+
+Status, kolom, quick filter, swimlane, dan field Priority masih perlu dikerjakan lewat UI karena connector Jira tidak menyediakan operasi untuk mengubah workflow, kolom board, atau filter tersimpan.
+
+### Checklist 30 menit
+
+1. Empat status baru dibuat dan kategorinya benar.
+2. Tujuh kolom tersusun sesuai target.
+3. Batas WIP QA diisi 3.
+4. Tiga quick filter dibuat.
+5. Group by Epic aktif.
+6. Priority tampil di tiket.
+7. Fix version v0.1 diisi di minimal satu tiket.
+8. Judul tiket dan nama sprint memakai prefix.
+
+## 25. Jalur naik level
 
 Minggu 1: kuasai Board, Backlog, dan halaman tiket. Buat lima tiket nyata dari pekerjaanmu sendiri.
 
@@ -279,7 +370,7 @@ Minggu 4: tambah field Priority ke layout lewat Work types. Buat versi rilis dan
 
 Bulan 2: tambah komponen, label taksonomi, dan automation sederhana. Mulai tautkan tiket ke commit dan halaman Confluence.
 
-## 25. Istilah singkat
+## 26. Istilah singkat
 
 Epic: tema besar. Story: pekerjaan bernilai. Task: pekerjaan teknis. Sub-task: pecahan. Bug: defect. Spike: riset berbatas waktu.
 
@@ -289,7 +380,7 @@ JQL: bahasa query Jira. Filter: query tersimpan. Dashboard: kumpulan gadget. Com
 
 DoR: syarat sebelum masuk sprint. DoD: syarat sebelum dianggap selesai. Story point: ukuran relatif. Velocity: rata-rata poin per sprint.
 
-## 26. Latihan
+## 27. Latihan
 
 1. Buka Backlog, buat sprint baru bernama Latihan, isi tanggal dua minggu, lalu hapus lagi setelah paham.
 2. Buat satu task dengan judul [QA] Uji alur login dan isi AC-nya.

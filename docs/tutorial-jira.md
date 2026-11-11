@@ -35,3 +35,8 @@ Video tersimpan sebagai .webm di results/tutorial. Kalau butuh mp4, konversi den
 
 Folder results dan .tutorial-profile tidak ikut di-commit.
 
+
+## Versi slide
+
+Panduan bergambar ada di docs/panduan-jira/index.html, dengan hasil render di docs/panduan-jira/slides/01.png sampai 09.png dan PDF di docs/panduan-jira/panduan-jira.pdf. Render ulang dengan: python scripts/render_slides.py
+
